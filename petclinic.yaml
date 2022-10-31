@@ -1,0 +1,17 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+    name: "petclinic-jboss-build"
+spec:
+  source:
+    git:
+      uri: "https://github.com/liatrio/spring-petclinic-framework"
+  strategy:
+    sourceStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "maven:3.5.0"
+      output:
+        to:
+          kind: "ImageStreamTag"
+          name: "jboss/wildfly:11.0.0.Final"

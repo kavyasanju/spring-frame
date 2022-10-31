@@ -1,0 +1,23 @@
+version: '3'
+services:
+  petclinic:
+    image: stein321/petclinic:2.0.1
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - JDBC_URL=jdbc:mysql://mysql:3306/petclinic
+      - JDBC_PASSWORD=petclinic
+      - DB_SCRIPT=mysql
+      - JDBC_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+      - JPA_DATABASE=MYSQL
+      - JDBC_USERNAME=root
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7.8
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=petclinic
+      - MYSQL_DATABASE=petclinic
